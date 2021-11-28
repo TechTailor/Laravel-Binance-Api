@@ -5,7 +5,7 @@
 [![Software License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge&&colorB=F27E40)](license.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/techtailor/laravel-binance-api.svg?style=for-the-badge)](https://packagist.org/packages/techtailor/laravel-binance-api)
 
-This package provides a Laravel Wrapper for the [Binance API](https://binance-docs.github.io/apidocs/spot) and allows you to easily communicate with it.
+This package provides a Laravel Wrapper for the [Binance API](https://binance-docs.github.io/apidocs/spot/en) and allows you to easily communicate with it.
 
  ---
 #### Important Note
