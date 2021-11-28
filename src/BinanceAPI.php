@@ -76,12 +76,13 @@ class BinanceAPI
     public function getSystemStatus()
     {
         $this->api_url = config('binance-api.urls.sapi');
+
         return $this->publicRequest('v1/system/status');
     }
 
     /**
      * Get Binance Server Time.
-     * 
+     *
      * @return mixed
      */
     public function getTime()
@@ -91,8 +92,9 @@ class BinanceAPI
 
     /**
      * Get Binance Exchange Info.
-     * 
+     *
      * @param string $symbol Exchange Pair Symbol
+     *
      * @return mixed
      */
     public function getExchangeInfo($symbol = null)
@@ -106,8 +108,9 @@ class BinanceAPI
 
     /**
      * Get Binance Order Book for a given symbol.
-     * 
+     *
      * @param string $symbol Exchange Pair Symbol
+     *
      * @return mixed
      */
     public function getOrderBook($symbol)
@@ -121,8 +124,9 @@ class BinanceAPI
 
     /**
      * Get Average Price for a given symbol.
-     * 
+     *
      * @param string $symbol Exchange Pair Symbol
+     *
      * @return mixed
      */
     public function getAvgPrice($symbol = null)
@@ -136,10 +140,11 @@ class BinanceAPI
 
     /**
      * Get 24hr Ticker Price Change Statistics.
-     * If the symbol is not sent, tickers for all symbols will 
+     * If the symbol is not sent, tickers for all symbols will
      * be returned in an array.
-     * 
+     *
      * @param string $symbol Exchange Pair Symbol
+     *
      * @return mixed
      */
     public function getTicker($symbol = null)
@@ -180,8 +185,9 @@ class BinanceAPI
 
     /**
      * Get all current account orders; active, canceled, or filled.
-     * 
+     *
      * @param string $symbol Exchange Pair Symbol
+     *
      * @return mixed
      */
     public function getAllOrders($symbol = null)
@@ -194,10 +200,11 @@ class BinanceAPI
     }
 
     /**
-     * Get all current account open orders on a symbol. 
+     * Get all current account open orders on a symbol.
      * Careful when accessing this with no symbol.
-     * 
+     *
      * @param string $symbol Exchange Pair Symbol
+     *
      * @return mixed
      */
     public function getOpenOrders($symbol = null)
@@ -210,9 +217,10 @@ class BinanceAPI
     }
 
     /**
-     * Get the trade history for a particular symbol. 
-     * 
+     * Get the trade history for a particular symbol.
+     *
      * @param string $symbol Exchange Pair Symbol
+     *
      * @return mixed
      */
     public function getTrades($symbol = null)
@@ -226,16 +234,17 @@ class BinanceAPI
 
     /**
      * Get an order's status.
-     * 
-     * @param string $symbol Exchange Pair Symbol
+     *
+     * @param string $symbol  Exchange Pair Symbol
      * @param string $orderId Exchange Order Id
+     *
      * @return mixed
      */
     public function getOrderStatus($symbol = null, $orderId = null)
     {
         $data = [
-            'symbol' => $symbol ? strtoupper($symbol) : null,
-            'orderId' => $orderId
+            'symbol'  => $symbol ? strtoupper($symbol) : null,
+            'orderId' => $orderId,
         ];
 
         return $this->privateRequest('v3/order', $data);
@@ -244,36 +253,39 @@ class BinanceAPI
     /**
      * Get information of coins (available for deposit and withdraw) for the user.
      * Uses Sapi Endpoint.
-     * 
+     *
      * @return mixed
      */
     public function getUserCoinsInfo()
     {
         $this->api_url = config('binance-api.urls.sapi');
+
         return $this->privateRequest('v1/capital/config/getall');
     }
 
     /**
      * Get deposit history of the user account.
      * Uses Sapi Endpoint.
-     * 
+     *
      * @return mixed
      */
     public function getDepositHistory()
     {
         $this->api_url = config('binance-api.urls.sapi');
+
         return $this->privateRequest('v1/capital/deposit/hisrec');
     }
 
     /**
      * Get withdraw history of the user account.
      * Uses Sapi Endpoint.
-     * 
+     *
      * @return mixed
      */
     public function getWithdrawHistory()
     {
         $this->api_url = config('binance-api.urls.sapi');
+
         return $this->privateRequest('v1/capital/withdraw/history');
     }
 
@@ -364,7 +376,7 @@ class BinanceAPI
                 'message' => $e->getMessage(),
             ];
         }
-        
+
         // If response if Ok. Return collection.
         if ($response->ok()) {
             return $response->collect();

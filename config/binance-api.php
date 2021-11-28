@@ -26,7 +26,7 @@ return [
      */
 
     'urls' => [
-        'api'  => 'https://api.binance.com/api/',
+        'api'   => 'https://api.binance.com/api/',
         'sapi'  => 'https://api.binance.com/sapi/',
     ],
 
