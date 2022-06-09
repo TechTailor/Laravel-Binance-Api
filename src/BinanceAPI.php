@@ -300,13 +300,13 @@ class BinanceAPI
      * @param $orderId
      * @return array|mixed
      */
-    public function withdraw(string $asset, string $address, $amount, $addressTag = null, $addressName = "", bool $transactionFeeFlag = false, $network = null, $orderId = null)
+    public function withdraw(string $asset, string $address, $amount, $addressTag = null, $addressName = '', bool $transactionFeeFlag = false, $network = null, $orderId = null)
     {
         $options = [
-            "coin" => $asset,
-            "address" => $address,
-            "amount" => $amount,
-            "sapi" => true,
+            'coin'    => $asset,
+            'address' => $address,
+            'amount'  => $amount,
+            'sapi'    => true,
         ];
 
         if (empty($addressName) === false) {
