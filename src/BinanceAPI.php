@@ -298,6 +298,7 @@ class BinanceAPI
      * @param bool $transactionFeeFlag
      * @param $network
      * @param $orderId
+     *
      * @return array|mixed
      */
     public function withdraw(string $asset, string $address, $amount, $addressTag = null, $addressName = '', bool $transactionFeeFlag = false, $network = null, $orderId = null)
