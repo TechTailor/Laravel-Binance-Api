@@ -301,7 +301,7 @@ class BinanceAPI
      *
      * @return array|mixed
      */
-    public function withdraw(string $asset, string $address, $amount, $addressTag = null, $addressName = '', bool $transactionFeeFlag = false, $network = null, $orderId = null)
+    public function withdraw(string $asset, string $address, $amount, $network = null, $addressTag = null, $addressName = '', bool $transactionFeeFlag = false, $orderId = null)
     {
         $options = [
             'coin'    => $asset,
@@ -328,7 +328,7 @@ class BinanceAPI
 
         $this->api_url = config('binance-api.urls.sapi');
 
-        return $this->privateRequest('v1/capital/withdraw/apply', $options);
+        return $this->privateRequest('v1/capital/withdraw/apply', $options, 'POST');
     }
 
     /**
