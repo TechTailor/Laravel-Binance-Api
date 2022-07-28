@@ -269,11 +269,10 @@ class BinanceAPI
      *
      * @return mixed
      */
-    public function getDepositHistory()
+    public function getDepositHistory($options = [])
     {
         $this->api_url = config('binance-api.urls.sapi');
-
-        return $this->privateRequest('v1/capital/deposit/hisrec');
+        return $this->privateRequest('v1/capital/deposit/hisrec', $options);
     }
 
     /**
@@ -329,6 +328,13 @@ class BinanceAPI
         $this->api_url = config('binance-api.urls.sapi');
 
         return $this->privateRequest('v1/capital/withdraw/apply', $options, 'POST');
+    }
+
+    public function getDepositAddress($options = [])
+    {
+        $this->api_url = config('binance-api.urls.sapi');
+
+        return $this->privateRequest('v1/capital/deposit/address', $options);
     }
 
     /**
