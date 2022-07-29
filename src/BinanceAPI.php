@@ -269,11 +269,10 @@ class BinanceAPI
      *
      * @return mixed
      */
-    public function getDepositHistory()
+    public function getDepositHistory($options = [])
     {
         $this->api_url = config('binance-api.urls.sapi');
-
-        return $this->privateRequest('v1/capital/deposit/hisrec');
+        return $this->privateRequest('v1/capital/deposit/hisrec', $options);
     }
 
     /**
@@ -287,6 +286,55 @@ class BinanceAPI
         $this->api_url = config('binance-api.urls.sapi');
 
         return $this->privateRequest('v1/capital/withdraw/history');
+    }
+
+    /**
+     * @param string $asset
+     * @param string $address
+     * @param $amount
+     * @param $addressTag
+     * @param $addressName
+     * @param bool $transactionFeeFlag
+     * @param $network
+     * @param $orderId
+     *
+     * @return array|mixed
+     */
+    public function withdraw(string $asset, string $address, $amount, $network = null, $addressTag = null, $addressName = '', bool $transactionFeeFlag = false, $orderId = null)
+    {
+        $options = [
+            'coin'    => $asset,
+            'address' => $address,
+            'amount'  => $amount,
+            'sapi'    => true,
+        ];
+
+        if (empty($addressName) === false) {
+            $options['name'] = str_replace(' ', '%20', $addressName);
+        }
+        if (empty($addressTag) === false) {
+            $options['addressTag'] = $addressTag;
+        }
+        if ($transactionFeeFlag) {
+            $options['transactionFeeFlag'] = true;
+        }
+        if (empty($network) === false) {
+            $options['network'] = $network;
+        }
+        if (empty($orderId) === false) {
+            $options['withdrawOrderId'] = $orderId;
+        }
+
+        $this->api_url = config('binance-api.urls.sapi');
+
+        return $this->privateRequest('v1/capital/withdraw/apply', $options, 'POST');
+    }
+
+    public function getDepositAddress($options = [])
+    {
+        $this->api_url = config('binance-api.urls.sapi');
+
+        return $this->privateRequest('v1/capital/deposit/address', $options);
     }
 
     /**
